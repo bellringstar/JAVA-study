@@ -19,6 +19,9 @@ public class MyStack<T> implements IStack<T> {
 
     @Override
     public T pop() {
+        if (this.isEmpty()){
+            return null;
+        }
         Node curr = this.head.next;
         this.head.next = curr.next;
         curr.next = null; // 연결끊기
@@ -28,12 +31,19 @@ public class MyStack<T> implements IStack<T> {
 
     @Override
     public T peek() {
-        return null;
+        if(this.isEmpty()) {
+            return null;
+        }
+        return this.head.next.data;
+    }
+
+    private boolean isEmpty(){
+        return this.head.next == null;
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     private class Node {
